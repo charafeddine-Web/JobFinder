@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "firstName": "charaf",
+      "lastName": "charaf",
+      "email": "charaf@gmail.com",
+      "password": "password",
+      "id": 1
+    }
+  ],
+  "favoritesOffers": [],
+  "applications": []
+}
