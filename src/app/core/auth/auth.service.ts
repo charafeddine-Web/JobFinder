@@ -38,15 +38,15 @@ export class AuthService {
     login(email: string, password: string): Observable<User> {
         return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
             map(users => {
-                if (users.length > 0) {
+                if (users && users.length > 0) {
                     const user = users[0];
                     const { password, ...userWithoutPassword } = user;
                     this.storeUser(userWithoutPassword);
                     return userWithoutPassword;
                 } else {
-                    throw new Error('Invalid email or password');
+                    throw new Error('Invalid email or password. Please try again.');
                 }
-            }) // Removed catchError to let component handle the error
+            })
         );
     }
 
@@ -63,5 +63,24 @@ export class AuthService {
 
     isAuthenticated(): boolean {
         return !!this.currentUserSubject.value;
+    }
+
+    getCurrentUser(): User | null {
+        return this.currentUserSubject.value;
+    }
+
+    updateUser(user: User): Observable<User> {
+        return this.http.put<User>(`${this.apiUrl}/${user.id}`, user).pipe(
+            tap(updatedUser => {
+                const { password, ...userWithoutPassword } = updatedUser;
+                this.storeUser(userWithoutPassword);
+            })
+        );
+    }
+
+    deleteUser(id: number): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+            tap(() => this.logout())
+        );
     }
 }

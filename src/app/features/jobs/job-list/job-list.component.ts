@@ -1,57 +1,167 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Job } from '../../../core/models/job.model';
-import { RouterLink } from '@angular/router';
+import { Favorite } from '../../../core/models/favorite.model';
+import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
-    selector: 'app-job-list',
-    standalone: true,
-    imports: [CommonModule, RouterLink],
-    template: `
-    <div class="space-y-4">
-      <div *ngFor="let job of jobs" class="bg-white shadow overflow-hidden sm:rounded-lg hover:shadow-md transition-shadow duration-200">
-        <div class="px-4 py-5 sm:px-6">
-          <div class="flex justify-between items-center">
-            <h3 class="text-lg leading-6 font-medium text-indigo-600 truncate">
-              <a [routerLink]="['/dashboard/jobs', job.id]">{{ job.title }}</a>
+  selector: 'app-job-list',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  template: `
+    <div class="grid grid-cols-1 gap-6">
+      <!-- Job Cards -->
+      <div *ngFor="let job of jobs" class="premium-card premium-card-interactive group overflow-hidden">
+        <!-- Visual Accent Line -->
+        <div class="h-1.5 w-full bg-gradient-to-r from-indigo-600 via-blue-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8">
+          <!-- Left: Company & Logo -->
+          <div class="flex flex-row md:flex-col items-center md:items-start gap-4 md:w-48 shrink-0">
+            <div class="relative">
+              <div class="w-20 h-20 bg-white rounded-3xl shadow-sm border border-slate-100 flex items-center justify-center group-hover:shadow-md transition-all duration-300">
+                <span class="text-3xl font-black bg-gradient-to-br from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+                  {{ job.company.substring(0, 1) }}
+                </span>
+              </div>
+              <!-- Online Badge Signal -->
+              <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+            
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Company</span>
+              <span class="text-lg font-black text-slate-900 truncate max-w-[150px]">{{ job.company }}</span>
+            </div>
+          </div>
+
+          <!-- Center: Info -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+              <span class="badge badge-new" *ngIf="isNewJob(job)">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
+                Trending
+              </span>
+              <span class="badge badge-remote" *ngIf="job.remote">Remote</span>
+              <span class="badge badge-onsite" *ngIf="!job.remote">On-site</span>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl font-black text-slate-900 group-hover:text-indigo-600 transition-colors mb-4 leading-tight">
+              <a (click)="protectedAction($event)" [routerLink]="authService.isAuthenticated() ? ['/dashboard/jobs', job.id] : null" 
+                 [class.cursor-pointer]="authService.isAuthenticated()" 
+                 class="hover:underline">{{ job.title }}</a>
             </h3>
-            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-              {{ job.source }}
-            </span>
-          </div>
-          <div class="mt-2 max-w-xl text-sm text-gray-500">
-            <p>{{ job.company }} • {{ job.location }}</p>
-          </div>
-          <div class="mt-2 text-sm text-gray-900 line-clamp-2">
-            {{ job.description }}
-          </div>
-          <div class="mt-4 flex justify-between items-center">
-            <div class="text-xs text-gray-500">
-              Posted: {{ job.datePosted | date }}
+
+            <div class="flex flex-wrap items-center gap-y-3 gap-x-6 text-slate-600 font-semibold mb-6">
+              <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
+                </div>
+                <span>{{ job.location }}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <span class="text-slate-900 font-black">{{ job.salary || 'Salary Undisclosed' }}</span>
+              </div>
             </div>
-            <div class="flex space-x-2">
-              <button (click)="onFavorite(job)" class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
-                Add to Favorites
-              </button>
-              <a [href]="job.url" target="_blank" class="text-gray-500 hover:text-gray-900 text-sm font-medium">
-                View Original
-              </a>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let tag of job.tags?.slice(0, 4)" class="px-3 py-1 bg-indigo-50/50 text-indigo-600 text-xs font-bold rounded-lg border border-indigo-100/50">
+                #{{ tag }}
+              </span>
             </div>
+          </div>
+
+          <!-- Right: Actions -->
+          <div class="flex flex-row md:flex-col items-center justify-between md:justify-center gap-4 md:w-48 shrink-0">
+            <button 
+              (click)="onFavorite($event, job); $event.stopPropagation()" 
+              class="flex-1 md:flex-none w-full h-14 rounded-2xl transition-all border-2 flex items-center justify-center gap-2 font-bold"
+              [ngClass]="isFavorite(job.id) ? 'bg-rose-50 border-rose-100 text-rose-500' : 'bg-white border-slate-100 text-slate-400 hover:border-rose-200 hover:text-rose-500 hover:bg-rose-50/30'"
+            >
+              <svg class="w-6 h-6" [attr.fill]="isFavorite(job.id) ? 'currentColor' : 'none'" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span>{{ isFavorite(job.id) ? 'Saved' : 'Save' }}</span>
+            </button>
+            <a 
+              [href]="authService.isAuthenticated() ? job.url : 'javascript:void(0)'" 
+              (click)="onApply($event, job); $event.stopPropagation()"
+              target="_blank" 
+              class="flex-1 md:flex-none w-full h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center gap-2 font-black shadow-lg shadow-slate-200 hover:bg-indigo-600 hover:shadow-indigo-200 transition-all duration-300 active:scale-95 cursor-pointer"
+            >
+              Apply
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
       
-      <div *ngIf="jobs.length === 0" class="text-center py-10 text-gray-500">
-        No jobs found. Try adjusting your search.
+      <!-- Empty State -->
+      <div *ngIf="jobs.length === 0" class="premium-card p-16 text-center border-2 border-dashed border-slate-300 animate-slide-up">
+        <!-- ... same empty state ... -->
+        <h3 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">We search everywhere...</h3>
+        <p class="text-slate-500 text-lg font-medium mb-8 max-w-md mx-auto">
+          No matches found for these filters. Try refining your keywords or location.
+        </p>
       </div>
     </div>
-  `
+  `,
 })
 export class JobListComponent {
-    @Input() jobs: Job[] = [];
-    @Output() favorite = new EventEmitter<Job>();
+  @Input() jobs: Job[] = [];
+  @Input() favorites: Favorite[] = [];
+  @Output() favorite = new EventEmitter<Job>();
+  @Output() apply = new EventEmitter<Job>();
 
-    onFavorite(job: Job) {
-        this.favorite.emit(job);
+  constructor(public authService: AuthService, private router: Router) { }
+
+  onFavorite(event: Event, job: Job) {
+    if (!this.authService.isAuthenticated()) {
+      event.preventDefault();
+      this.router.navigate(['/auth/login']);
+      return;
     }
+    this.favorite.emit(job);
+  }
+
+  onApply(event: Event, job: Job) {
+    if (!this.authService.isAuthenticated()) {
+      event.preventDefault();
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+    this.apply.emit(job);
+  }
+
+  protectedAction(event: Event) {
+    if (!this.authService.isAuthenticated()) {
+      event.preventDefault();
+      this.router.navigate(['/auth/login']);
+    }
+  }
+
+  isFavorite(jobId: string): boolean {
+    return this.favorites.some(f => f.offerId === jobId);
+  }
+
+  isNewJob(job: Job): boolean {
+    const postedDate = new Date(job.datePosted);
+    const now = new Date();
+    const daysDiff = Math.floor((now.getTime() - postedDate.getTime()) / (1000 * 60 * 60 * 24));
+    return daysDiff <= 7;
+  }
 }

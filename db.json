@@ -2,12 +2,41 @@
   "users": [
     {
       "firstName": "charaf",
-      "lastName": "charaf",
+      "lastName": "charaf eddine",
       "email": "charaf@gmail.com",
-      "password": "password",
       "id": 1
     }
   ],
-  "favoritesOffers": [],
-  "applications": []
+  "favoritesOffers": [
+    {
+      "userId": 1,
+      "offerId": "steuerberater-in-erfurt-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-342828",
+      "title": "Steuerberater (m/w/d) in Erfurt, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€",
+      "company": "Taxtalente.de",
+      "location": "Erfurt",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "offerId": "bekleidungsdesigner-fashion-designer-ansbach-50246",
+      "title": "Bekleidungsdesigner / Fashion Designer (m/w/d)",
+      "company": "TEVEO GmbH",
+      "location": "Ansbach",
+      "id": 4
+    }
+  ],
+  "applications": [
+    {
+      "userId": 1,
+      "offerId": "bekleidungsdesigner-fashion-designer-ansbach-50246",
+      "apiSource": "arbeitnow",
+      "title": "Bekleidungsdesigner / Fashion Designer (m/w/d)",
+      "company": "TEVEO GmbH",
+      "location": "Ansbach",
+      "url": "https://www.arbeitnow.com/jobs/companies/teveo-gmbh/bekleidungsdesigner-fashion-designer-ansbach-50246",
+      "status": "pending",
+      "dateAdded": "2026-02-13T17:04:38.295Z",
+      "id": 3
+    }
+  ]
 }

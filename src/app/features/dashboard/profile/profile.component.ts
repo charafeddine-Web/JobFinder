@@ -1,128 +1,254 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/auth/auth.service';
-import { User } from '../../../core/models/user.model'; // Need to update user model if needed, currently reusing auth model
+import { User } from '../../../core/models/user.model';
 
 @Component({
-    selector: 'app-profile',
-    standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
-    template: `
-    <div class="max-w-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <div class="md:flex md:items-center md:justify-between">
-        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-          My Profile
-        </h2>
+  selector: 'app-profile',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  template: `
+    <div class="space-y-10 animate-fade-in pb-20">
+      <!-- Header Section -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg text-xs font-black uppercase tracking-wider">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Preferences
+          </div>
+          <h2 class="text-4xl font-black text-slate-900 tracking-tight leading-none">Account <span class="gradient-text">Settings</span></h2>
+          <p class="text-lg text-slate-400 font-medium">Manage your professional identity and security</p>
+        </div>
       </div>
 
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="mt-6 space-y-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
-        <div class="grid grid-cols-6 gap-6">
-          <div class="col-span-6 sm:col-span-3">
-            <label for="firstName" class="block text-sm font-medium text-gray-700">First name</label>
-            <input type="text" formControlName="firstName" id="firstName" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+        <!-- Main Form -->
+        <div class="lg:col-span-2 space-y-8">
+          <div class="premium-card p-8 md:p-12 overflow-hidden relative">
+            <!-- Decorative gradient line -->
+            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-500"></div>
+            
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="space-y-10">
+              <div class="space-y-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div class="space-y-2">
+                    <label for="firstName" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">First name</label>
+                    <div class="relative group">
+                      <input type="text" formControlName="firstName" id="firstName" 
+                        class="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all font-bold">
+                    </div>
+                  </div>
 
-          <div class="col-span-6 sm:col-span-3">
-            <label for="lastName" class="block text-sm font-medium text-gray-700">Last name</label>
-            <input type="text" formControlName="lastName" id="lastName" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
+                  <div class="space-y-2">
+                    <label for="lastName" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Last name</label>
+                    <div class="relative group">
+                      <input type="text" formControlName="lastName" id="lastName" 
+                        class="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all font-bold">
+                    </div>
+                  </div>
+                </div>
 
-          <div class="col-span-6 sm:col-span-4">
-            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-            <input type="email" formControlName="email" id="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
-          
-           <div class="col-span-6 sm:col-span-4">
-            <label for="password" class="block text-sm font-medium text-gray-700">New Password (leave blank to keep current)</label>
-            <input type="password" formControlName="password" id="password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-          </div>
-        </div>
-        
-        <div *ngIf="successMessage" class="rounded-md bg-green-50 p-4">
-          <div class="flex">
-            <div class="flex-shrink-0">
-              <!-- Check icon -->
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-green-800">{{ successMessage }}</p>
-            </div>
+                <div class="space-y-2">
+                  <label for="email" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Email address</label>
+                  <div class="relative group">
+                    <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-indigo-600 transition-colors">
+                       <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                       </svg>
+                    </div>
+                    <input type="email" formControlName="email" id="email" 
+                      class="block w-full pl-14 pr-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all font-bold">
+                  </div>
+                </div>
+                
+                <div class="border-t border-slate-100 pt-10">
+                  <div class="space-y-4">
+                    <h3 class="text-lg font-black text-slate-900">Security</h3>
+                    <div class="space-y-2">
+                      <label for="password" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Update Password <span class="text-slate-400 font-bold lowercase italic">(leave blank to keep current)</span></label>
+                      <div class="relative group">
+                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-300 group-focus-within:text-violet-600 transition-colors">
+                           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                           </svg>
+                        </div>
+                        <input type="password" formControlName="password" id="password" 
+                          class="block w-full pl-14 pr-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-violet-600 focus:ring-4 focus:ring-violet-50/50 transition-all font-bold"
+                          placeholder="••••••••••••">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div *ngIf="successMessage" class="flex items-center gap-4 p-5 bg-emerald-50 border-2 border-emerald-100 rounded-2xl text-emerald-700 animate-slide-up">
+                <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-lg shadow-emerald-100">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <p class="text-sm font-black">{{ successMessage }}</p>
+              </div>
+
+              <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                <button type="submit" [disabled]="profileForm.invalid || loading" 
+                  class="btn btn-primary px-12 py-4 h-14 min-w-[200px] shadow-2xl shadow-indigo-100 disabled:opacity-50">
+                  <span *ngIf="!loading">Save Changes</span>
+                  <div *ngIf="loading" class="flex items-center gap-2">
+                     <div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                     Syncing...
+                  </div>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
 
-        <div class="flex justify-end">
-          <button type="submit" [disabled]="profileForm.invalid || loading" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            {{ loading ? 'Saving...' : 'Save' }}
-          </button>
-        </div>
-      </form>
-      
-       <div class="mt-10 border-t border-gray-200 pt-10">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">Delete Account</h3>
-        <div class="mt-2 max-w-xl text-sm text-gray-500">
-          <p>Once you delete your account, you will list all of your data. This action cannot be undone.</p>
-        </div>
-        <div class="mt-5">
-          <button type="button" (click)="deleteAccount()" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
-            Delete Account
-          </button>
+        <!-- Sidebar Info -->
+        <div class="space-y-8">
+           <!-- Membership Card -->
+           <div class="premium-card p-10 relative overflow-hidden group">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700"></div>
+              
+              <div class="relative flex flex-col items-center text-center space-y-6">
+                 <div class="relative">
+                    <div class="w-24 h-24 rounded-[32px] bg-gradient-to-br from-indigo-600 to-blue-600 text-white flex items-center justify-center font-black text-4xl shadow-2xl shadow-indigo-200 border-4 border-white">
+                      {{ currentUser?.firstName?.substring(0, 1) }}
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-emerald-500 border-4 border-white rounded-2xl flex items-center justify-center shadow-lg">
+                       <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.394 2.813a1 1 0 00-.788 0l-7 3a1 1 0 000 1.842l7 3a1 1 0 00.788 0l7-3a1 1 0 000-1.842l-7-3zM4.673 11.5a1 1 0 011.442-.442L10 13.012l3.885-1.954a1 1 0 11.894 1.788l-4.5 2.264a1 1 0 01-.894 0l-4.5-2.264a1 1 0 01-.212-1.35z" />
+                       </svg>
+                    </div>
+                 </div>
+                 
+                 <div class="space-y-1">
+                    <h3 class="text-2xl font-black text-slate-900 leading-tight">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</h3>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-[10px] font-black uppercase tracking-widest">
+                       Premium Professional
+                    </div>
+                 </div>
+
+                 <div class="w-full h-px bg-slate-100"></div>
+
+                 <div class="w-full grid grid-cols-2 gap-4">
+                    <div class="text-left">
+                       <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Joined</p>
+                       <p class="text-sm font-bold text-slate-700">Feb 2026</p>
+                    </div>
+                    <div class="text-left">
+                       <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Status</p>
+                       <p class="text-sm font-bold text-slate-700 italic">Active</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+
+           <!-- Danger Zone -->
+           <div class="premium-card p-10 bg-rose-50/50 border-rose-100 group">
+              <h3 class="text-xs font-black text-rose-500 uppercase tracking-[0.2em] mb-4">Danger Zone</h3>
+              <p class="text-rose-600/70 text-sm font-medium leading-relaxed mb-8">
+                 Removing your account will permanently clear all your saved jobs and tracking history.
+              </p>
+              <button type="button" (click)="deleteAccount()" 
+                 class="w-full h-14 bg-white border-2 border-rose-100 text-rose-500 font-black rounded-2xl hover:bg-rose-500 hover:text-white hover:border-rose-500 transition-all active:scale-95 flex items-center justify-center gap-2 group-hover:shadow-rose-100">
+                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                 </svg>
+                 Delete Forever
+              </button>
+           </div>
         </div>
       </div>
     </div>
   `
 })
 export class ProfileComponent implements OnInit {
-    profileForm: FormGroup;
-    loading = false;
-    successMessage: string | null = null;
-    currentUser: any; // Ideally typed
+  profileForm: FormGroup;
+  loading = false;
+  successMessage: string | null = null;
+  currentUser: any;
 
-    constructor(
-        private fb: FormBuilder,
-        private authService: AuthService // Need updateProfile method?
-    ) {
-        this.profileForm = this.fb.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['']
-        });
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {
+    this.profileForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['']
+    });
+  }
+
+  ngOnInit(): void {
+    const user = this.authService.getCurrentUser();
+    if (user) {
+      this.currentUser = user;
+      this.profileForm.patchValue({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
+      });
     }
+  }
 
-    ngOnInit(): void {
-        const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-        if (user) {
-            this.currentUser = user;
-            this.profileForm.patchValue({
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
-            });
-        }
-    }
+  onSubmit() {
+    if (this.profileForm.valid) {
+      this.loading = true;
+      this.successMessage = null;
+      this.cdr.detectChanges();
 
-    onSubmit() {
-        if (this.profileForm.valid) {
-            this.loading = true;
+      const formValue = this.profileForm.getRawValue();
+      const updatedUser: User = {
+        ...this.currentUser,
+        ...formValue
+      };
+
+      if (!formValue.password) {
+        delete updatedUser.password;
+      }
+
+      this.authService.updateUser(updatedUser).subscribe({
+        next: (res) => {
+          this.loading = false;
+          this.successMessage = "Profile updated successfully!";
+          this.currentUser = res;
+          this.cdr.detectChanges();
+
+          setTimeout(() => {
             this.successMessage = null;
-            const updatedUser = { ...this.currentUser, ...this.profileForm.value };
-            if (!updatedUser.password) delete updatedUser.password; // Don't send empty password
-
-            // We need an update method in AuthService
-            // this.authService.updateUser(updatedUser).subscribe(...)
-            // For now mocking success
-            setTimeout(() => {
-                this.loading = false;
-                this.successMessage = "Profile updated successfully (Mock)";
-                sessionStorage.setItem('currentUser', JSON.stringify(updatedUser));
-            }, 1000);
+            this.cdr.detectChanges();
+          }, 3000);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.cdr.detectChanges();
+          console.error('Update failed', err);
+          alert('Failed to update profile. Please try again.');
         }
+      });
     }
+  }
 
-    deleteAccount() {
-        if (confirm('Are you strictly sure you want to delete your account?')) {
-            // this.authService.deleteUser(this.currentUser.id)...
+  deleteAccount() {
+    if (confirm('Are you strictly sure you want to delete your account? This action is IRREVERSIBLE.')) {
+      if (this.currentUser && this.currentUser.id) {
+        this.authService.deleteUser(this.currentUser.id).subscribe({
+          next: () => {
             this.authService.logout();
-        }
+          },
+          error: (err) => {
+            console.error('Deletion failed', err);
+            alert('Failed to delete account. Please try again.');
+          }
+        });
+      }
     }
+  }
 }

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+    { path: '', loadComponent: () => import('./features/jobs/jobs-page.component').then(m => m.JobsPageComponent) },
     {
         path: 'auth',
         children: [

@@ -1,5 +1,5 @@
 export interface Favorite {
-    id: number; // json-server id
+    id: number;
     userId: number;
     offerId: string;
     title: string;

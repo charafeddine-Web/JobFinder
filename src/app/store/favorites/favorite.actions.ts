@@ -4,7 +4,7 @@ import { Job } from '../../core/models/job.model';
 
 export const loadFavorites = createAction(
     '[Favorites Page] Load Favorites',
-    props<{ userId: number }>() // Load for specific user
+    props<{ userId: number }>()
 );
 
 export const loadFavoritesSuccess = createAction(

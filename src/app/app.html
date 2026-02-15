@@ -1,2 +1,83 @@
+<header *ngIf="!isDashboard"
+  class="sticky top-0 z-50 h-20 bg-white/95 backdrop-blur-xl border-b border-slate-200/60 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+    
+    <!-- Logo & Brand -->
+    <div class="flex items-center gap-12">
+      <a routerLink="/" class="flex items-center gap-3 group cursor-pointer">
+        <!-- Brand Name -->
+        <span class="text-2xl font-black text-slate-900 tracking-tight group-hover:text-indigo-600 transition-colors duration-300">
+          JFinder
+        </span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a routerLink="/"
+          routerLinkActive="active"
+          class="relative px-4 py-2 text-sm font-bold text-slate-700 hover:text-indigo-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
+          Explore Jobs
+          <!-- Animated Underline -->
+          <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-blue-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
+        </a>
+        
+        <a href="#companies"
+          class="relative px-4 py-2 text-sm font-bold text-slate-700 hover:text-indigo-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
+          Companies
+          <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-blue-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
+        </a>
+        
+        <a href="#resources"
+          class="relative px-4 py-2 text-sm font-bold text-slate-700 hover:text-indigo-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
+          Resources
+          <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-blue-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Auth Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Not Authenticated State -->
+      <ng-container *ngIf="!authService.isAuthenticated()">
+        <!-- Login Button -->
+        <a routerLink="/auth/login"
+          class="px-5 py-2.5 text-sm font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-200">
+          Log in
+        </a>
+        
+        <!-- Get Started Button (Primary CTA) -->
+        <a routerLink="/auth/register" 
+          class="group relative px-6 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-lg shadow-md shadow-indigo-200/50 hover:shadow-lg hover:shadow-indigo-300/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+          <span>Get Started</span>
+          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          
+          <!-- Shine Effect on Hover -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg overflow-hidden">
+            <div class="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 group-hover:left-full transition-all duration-700"></div>
+          </div>
+        </a>
+      </ng-container>
+
+      <!-- Authenticated State -->
+      <ng-container *ngIf="authService.isAuthenticated()">
+        <!-- Dashboard Button -->
+        <a routerLink="/dashboard" 
+          class="group relative px-6 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-lg shadow-md shadow-indigo-200/50 hover:shadow-lg hover:shadow-indigo-300/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+          <span>Dashboard</span>
+          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+          
+          <!-- Shine Effect -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg overflow-hidden">
+            <div class="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 group-hover:left-full transition-all duration-700"></div>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+</header>
 
 <router-outlet />
