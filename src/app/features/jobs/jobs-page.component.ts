@@ -154,9 +154,7 @@ export class JobsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Combine search criteria with an initial trigger to ensure jobs load on first visit
     this.searchCriteria$.pipe(
-      // Ensure the first load happens after a tiny delay to allow component stability
       delay(200),
       tap(() => {
         this.loading = true;
@@ -165,7 +163,6 @@ export class JobsPageComponent implements OnInit, OnDestroy {
       }),
       switchMap(criteria => this.jobService.searchJobs(criteria).pipe(
         catchError(err => {
-          console.error('Error in JobsPageComponent search:', err);
           this.errorMessage = 'Unable to fetch job listings at this moment. Please try again.';
           return of([]);
         }),
@@ -181,15 +178,13 @@ export class JobsPageComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.cdr.detectChanges();
       },
-      error: (err) => {
-        console.error('Critical subscription error:', err);
+      error: () => {
         this.errorMessage = 'A critical error occurred while loading jobs.';
         this.loading = false;
         this.cdr.detectChanges();
       }
     });
 
-    // Load favorites if user is logged in
     const user = this.authService.getCurrentUser();
     if (user && user.id) {
       this.store.dispatch(FavoriteActions.loadFavorites({ userId: user.id }));

@@ -17,7 +17,6 @@ export interface JobSearchCriteria {
     location: string;
 }
 
-// Arbeitnow API response structure
 export interface ArbeitnowJob {
     slug: string;
     company_name: string;

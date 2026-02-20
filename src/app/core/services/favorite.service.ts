@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class FavoriteService {
-    private apiUrl = 'http://localhost:3000/favoritesOffers'; // JSON Server
+    private apiUrl = 'http://localhost:3000/favoritesOffers';
 
     constructor(private http: HttpClient) { }
 
@@ -23,7 +23,6 @@ export class FavoriteService {
             title: job.title,
             company: job.company,
             location: job.location
-            // Add other fields as needed for display in favorites list
         };
         return this.http.post<Favorite>(this.apiUrl, favorite as Favorite);
     }

@@ -28,10 +28,7 @@ export class AuthService {
                 }
                 return this.http.post<User>(this.apiUrl, user);
             }),
-            tap(createdUser => {
-                // Automatically login logic if desired, or just return success
-                // For now, we'll let the component handle navigation/login
-            })
+            tap(() => { })
         );
     }
 

@@ -185,7 +185,6 @@ export class JobListComponent implements OnChanges {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.updatePagination();
-      // Scroll to top of list container
       const listContainer = document.querySelector('app-job-list');
       if (listContainer) {
         listContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -201,10 +200,10 @@ export class JobListComponent implements OnChanges {
     }
 
     if (this.currentPage - delta > 2) {
-      range.unshift(-1); // ellipsis
+      range.unshift(-1);
     }
     if (this.currentPage + delta < this.totalPages - 1) {
-      range.push(-1); // ellipsis
+      range.push(-1);
     }
 
     range.unshift(1);
@@ -212,12 +211,9 @@ export class JobListComponent implements OnChanges {
       range.push(this.totalPages);
     }
 
-    // Simplified for now: just return all pages if < 7, otherwise window
     if (this.totalPages <= 7) {
       return Array.from({ length: this.totalPages }, (_, i) => i + 1);
     } else {
-      // Simple window logic to avoid complex ellipsis logic for now if not strictly requested
-      // Let's stick to a simple sliding window
       let start = Math.max(1, this.currentPage - 2);
       let end = Math.min(this.totalPages, start + 4);
 

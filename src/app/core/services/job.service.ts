@@ -14,10 +14,6 @@ export class JobService {
 
     constructor(private http: HttpClient) { }
 
-    /**
-     * Search jobs using Arbeitnow API
-     * Note: Arbeitnow doesn't support keyword search in API, so we fetch all jobs and filter client-side
-     */
     searchJobs(criteria: JobSearchCriteria): Observable<Job[]> {
         return this.http.get<ArbeitnowResponse>(this.apiUrl).pipe(
             timeout(6000),
@@ -51,7 +47,6 @@ export class JobService {
             return matchesQuery && matchesLocation;
         });
 
-        // "Les résultats doivent être triés par date de publication (du plus récent au plus ancien)"
         return filtered.sort((a, b) => {
             const dateA = new Date(a.datePosted).getTime();
             const dateB = new Date(b.datePosted).getTime();
@@ -100,18 +95,12 @@ export class JobService {
         ];
     }
 
-    /**
-     * Get job by ID
-     * First checks cache, then fetches from API if needed
-     */
     getJobById(id: string): Observable<Job | undefined> {
-        // Check cache first
         const cachedJob = this.jobsCache.find(j => j.id === id);
         if (cachedJob) {
             return of(cachedJob);
         }
 
-        // If not in cache, fetch all jobs and find the one we need
         return this.http.get<ArbeitnowResponse>(this.apiUrl).pipe(
             map(response => {
                 const jobs = response.data.map(job => this.mapArbeitnowJobToJob(job));
@@ -125,9 +114,6 @@ export class JobService {
         );
     }
 
-    /**
-     * Map Arbeitnow API response to our Job model
-     */
     private mapArbeitnowJobToJob(arbeitnowJob: ArbeitnowJob): Job {
         return {
             id: arbeitnowJob.slug,

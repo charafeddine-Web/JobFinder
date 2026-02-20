@@ -133,8 +133,6 @@ export class FavoritesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Ideally we get userId from auth state or service
-    // For now getting it from auth service directly if available or session
     const user = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     if (user && user.id) {
       this.store.dispatch(loadFavorites({ userId: user.id }));
