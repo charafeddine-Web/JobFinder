@@ -5,38 +5,92 @@
       "lastName": "charaf eddine",
       "email": "charaf@gmail.com",
       "id": 1
+    },
+    {
+      "firstName": "test Mod",
+      "lastName": "test ",
+      "email": "test@gmail.com",
+      "id": 2
     }
   ],
   "favoritesOffers": [
     {
       "userId": 1,
-      "offerId": "steuerberater-in-erfurt-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-342828",
-      "title": "Steuerberater (m/w/d) in Erfurt, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€",
-      "company": "Taxtalente.de",
-      "location": "Erfurt",
-      "id": 3
+      "offerId": "qa-tester-web-app-saas-proptech-dresden-120119",
+      "title": "QA TESTER (M/W/D) - WEB APP / SAAS / PROPTECH",
+      "company": "Enerithm Technology GmbH",
+      "location": "Dresden",
+      "id": 1
     },
     {
-      "userId": 1,
-      "offerId": "bekleidungsdesigner-fashion-designer-ansbach-50246",
-      "title": "Bekleidungsdesigner / Fashion Designer (m/w/d)",
-      "company": "TEVEO GmbH",
-      "location": "Ansbach",
-      "id": 4
+      "userId": 2,
+      "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
+      "title": "Software & Controls Engineer for Humanoid Robotics",
+      "company": "Cell Labs",
+      "location": "Berlin",
+      "id": 2
     }
   ],
   "applications": [
     {
       "userId": 1,
-      "offerId": "bekleidungsdesigner-fashion-designer-ansbach-50246",
+      "offerId": "social-media-manager-dach-raum-ansbach-152075",
       "apiSource": "arbeitnow",
-      "title": "Bekleidungsdesigner / Fashion Designer (m/w/d)",
+      "title": "Social Media Manager - DACH Raum (m/w/d)",
       "company": "TEVEO GmbH",
       "location": "Ansbach",
-      "url": "https://www.arbeitnow.com/jobs/companies/teveo-gmbh/bekleidungsdesigner-fashion-designer-ansbach-50246",
+      "url": "https://www.arbeitnow.com/jobs/companies/teveo-gmbh/social-media-manager-dach-raum-ansbach-152075",
       "status": "pending",
-      "dateAdded": "2026-02-13T17:04:38.295Z",
+      "dateAdded": "2026-02-15T14:03:43.249Z",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "offerId": "qa-tester-web-app-saas-proptech-dresden-120119",
+      "apiSource": "arbeitnow",
+      "title": "QA TESTER (M/W/D) - WEB APP / SAAS / PROPTECH",
+      "company": "Enerithm Technology GmbH",
+      "location": "Dresden",
+      "url": "https://www.arbeitnow.com/jobs/companies/enerithm-technology-gmbh/qa-tester-web-app-saas-proptech-dresden-120119",
+      "status": "pending",
+      "dateAdded": "2026-02-15T14:04:07.101Z",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "offerId": "freelance-personalized-internet-ads-assessor-german-speaker-in-germany-berlin-170637",
+      "apiSource": "arbeitnow",
+      "title": "Freelance: Personalized Internet Ads Assessor - German speaker in Germany",
+      "company": "TELUS Digital",
+      "location": "Berlin",
+      "url": "https://www.arbeitnow.com/jobs/companies/telus-digital/freelance-personalized-internet-ads-assessor-german-speaker-in-germany-berlin-170637",
+      "status": "pending",
+      "dateAdded": "2026-02-15T16:09:33.528Z",
       "id": 3
+    },
+    {
+      "userId": 2,
+      "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
+      "apiSource": "arbeitnow",
+      "title": "Software & Controls Engineer for Humanoid Robotics",
+      "company": "Cell Labs",
+      "location": "Berlin",
+      "url": "https://www.arbeitnow.com/jobs/companies/cell-labs/software-controls-engineer-for-humanoid-robotics-berlin-391547",
+      "status": "pending",
+      "dateAdded": "2026-02-20T00:04:05.299Z",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
+      "apiSource": "arbeitnow",
+      "title": "Software & Controls Engineer for Humanoid Robotics",
+      "company": "Cell Labs",
+      "location": "Berlin",
+      "url": "https://www.arbeitnow.com/jobs/companies/cell-labs/software-controls-engineer-for-humanoid-robotics-berlin-391547",
+      "status": "pending",
+      "dateAdded": "2026-02-20T00:04:46.082Z",
+      "id": 5
     }
   ]
 }

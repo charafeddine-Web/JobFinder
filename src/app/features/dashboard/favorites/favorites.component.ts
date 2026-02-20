@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
       <!-- Header Section -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg text-xs font-black uppercase tracking-wider">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-lg text-xs font-black uppercase tracking-wider">
             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
@@ -56,9 +56,9 @@ import { RouterLink } from '@angular/router';
 
       <div *ngIf="!(loading$ | async) && (favorites$ | async) as favorites">
         <!-- Empty State -->
-        <div *ngIf="favorites.length === 0" class="premium-card py-32 text-center border-2 border-dashed border-indigo-100 bg-indigo-50/20">
-          <div class="w-24 h-24 bg-white rounded-[40px] shadow-2xl shadow-indigo-100 flex items-center justify-center mx-auto mb-8 animate-float">
-             <svg class="h-10 w-10 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div *ngIf="favorites.length === 0" class="premium-card py-32 text-center border-2 border-dashed border-orange-100 bg-orange-50/20">
+          <div class="w-24 h-24 bg-white rounded-[40px] shadow-2xl shadow-orange-100 flex items-center justify-center mx-auto mb-8 animate-float">
+             <svg class="h-10 w-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
              </svg>
           </div>
@@ -66,7 +66,7 @@ import { RouterLink } from '@angular/router';
           <p class="text-slate-500 text-lg font-medium mb-10 max-w-md mx-auto leading-relaxed">
             Start exploring thousands of jobs and save the ones that catch your eye.
           </p>
-          <a routerLink="/dashboard/jobs" class="btn btn-primary px-10 py-4 shadow-2xl shadow-indigo-200">
+          <a routerLink="/dashboard/jobs" class="inline-flex items-center justify-center h-14 px-10 bg-orange-600 text-white font-black rounded-2xl shadow-2xl shadow-orange-200 hover:bg-orange-700 hover:scale-[1.02] active:scale-95 transition-all">
             Explore Jobs
           </a>
         </div>
@@ -83,7 +83,7 @@ import { RouterLink } from '@angular/router';
                         {{ favorite.company.substring(0, 1) }}
                       </span>
                     </div>
-                    <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-4 border-white rounded-full"></div>
+                    <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-orange-500 border-4 border-white rounded-full"></div>
                  </div>
                  
                  <button (click)="onRemove(favorite.id)" class="w-10 h-10 rounded-xl flex items-center justify-center text-slate-300 hover:text-rose-500 hover:bg-rose-50 hover:border-rose-100 border border-transparent transition-all duration-300">
@@ -94,11 +94,11 @@ import { RouterLink } from '@angular/router';
               </div>
               
               <div class="space-y-3">
-                <h3 class="text-xl font-black text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-tight">
+                <h3 class="text-xl font-black text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-tight">
                    {{ favorite.title }}
                 </h3>
                 <div class="flex items-center gap-2">
-                   <p class="text-indigo-600 text-sm font-black">{{ favorite.company }}</p>
+                   <p class="text-orange-600 text-sm font-black">{{ favorite.company }}</p>
                    <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
                    <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">{{ favorite.location }}</span>
                 </div>
@@ -107,9 +107,9 @@ import { RouterLink } from '@angular/router';
             
             <!-- Bottom Link -->
             <div class="px-8 py-6 bg-slate-50/50 border-t border-slate-100 mt-auto">
-               <a [routerLink]="['/dashboard/jobs', favorite.offerId]" class="btn btn-primary w-full py-3 text-sm flex items-center justify-center gap-2 group-hover:shadow-indigo-100">
+               <a [routerLink]="['/dashboard/jobs', favorite.offerId]" class="flex items-center justify-center w-full h-12 bg-slate-900 text-white rounded-xl text-sm font-black hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-200">
                  Apply Now
-                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                  </svg>
                </a>

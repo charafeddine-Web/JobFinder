@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Application } from '../../../core/models/application.model';
 import { selectAllApplications, selectApplicationsLoading } from '../../../store/applications/application.selectors';
-import { loadApplications, removeApplication } from '../../../store/applications/application.actions';
+import { loadApplications, removeApplication, updateApplication } from '../../../store/applications/application.actions';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -17,8 +17,8 @@ import { RouterLink } from '@angular/router';
       <!-- Header Section -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-black uppercase tracking-wider">
-            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-lg text-xs font-black uppercase tracking-wider">
+            <span class="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse"></span>
             Application Tracker
           </div>
           <h2 class="text-4xl font-black text-slate-900 tracking-tight leading-none">My <span class="gradient-text">Journey</span></h2>
@@ -27,7 +27,7 @@ import { RouterLink } from '@angular/router';
         
         <div class="flex items-center gap-4">
           <div class="premium-card px-6 py-3 flex items-center gap-3">
-             <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
+             <div class="w-2.5 h-2.5 bg-orange-500 rounded-full animate-pulse"></div>
              <span class="text-slate-900 font-black text-sm">{{ (applications$ | async)?.length || 0 }} Applications</span>
           </div>
         </div>
@@ -49,9 +49,9 @@ import { RouterLink } from '@angular/router';
 
       <div *ngIf="!(loading$ | async) && (applications$ | async) as applications">
         <!-- Empty State -->
-        <div *ngIf="applications.length === 0" class="premium-card py-32 text-center border-2 border-dashed border-emerald-100 bg-emerald-50/20">
-          <div class="w-24 h-24 bg-white rounded-[40px] shadow-2xl shadow-emerald-100 flex items-center justify-center mx-auto mb-8 animate-float">
-             <svg class="h-10 w-10 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div *ngIf="applications.length === 0" class="premium-card py-32 text-center border-2 border-dashed border-orange-100 bg-orange-50/20">
+          <div class="w-24 h-24 bg-white rounded-[40px] shadow-2xl shadow-orange-100 flex items-center justify-center mx-auto mb-8 animate-float">
+             <svg class="h-10 w-10 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
              </svg>
           </div>
@@ -59,14 +59,14 @@ import { RouterLink } from '@angular/router';
           <p class="text-slate-500 text-lg font-medium mb-10 max-w-md mx-auto leading-relaxed">
             Apply to jobs and they will automatically appear here. Stay organized and never miss an update.
           </p>
-          <a routerLink="/dashboard/jobs" class="btn btn-primary px-10 py-4 shadow-2xl shadow-indigo-200">
+          <a routerLink="/dashboard/jobs" class="inline-flex items-center justify-center h-14 px-10 bg-orange-600 text-white font-black rounded-2xl shadow-2xl shadow-orange-200 hover:bg-orange-700 hover:scale-[1.02] active:scale-95 transition-all">
             Start Applying
           </a>
         </div>
 
         <!-- creative list -->
         <div *ngIf="applications.length > 0" class="space-y-6">
-          <div *ngFor="let app of applications" class="premium-card premium-card-interactive group overflow-hidden border-l-8"
+          <div *ngFor="let app of applications" class="premium-card premium-card-interactive group overflow-hidden border-l-8 transition-all hover:bg-slate-50/50"
                [ngClass]="{
                   'border-amber-400': app.status === 'pending',
                   'border-emerald-500': app.status === 'accepted',
@@ -89,10 +89,10 @@ import { RouterLink } from '@angular/router';
                 </div>
                 
                 <div class="min-w-0">
-                   <h3 class="text-xl font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+                   <h3 class="text-xl font-black text-slate-900 truncate group-hover:text-orange-600 transition-colors">
                       {{ app.title }}
                    </h3>
-                   <p class="text-indigo-600 text-sm font-black">{{ app.company }}</p>
+                   <p class="text-orange-600 text-sm font-black">{{ app.company }}</p>
                 </div>
               </div>
               
@@ -122,14 +122,14 @@ import { RouterLink } from '@angular/router';
 
                  <!-- note Input -->
                  <div class="w-full relative group/note">
-                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-300 group-focus-within/note:text-indigo-600 transition-colors">
+                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-300 group-focus-within/note:text-orange-600 transition-colors">
                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                        </svg>
                     </div>
                     <input type="text" [(ngModel)]="app.notes" (blur)="updateNotes(app)" 
                        placeholder="Add a track note..." 
-                       class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-100 text-slate-700 text-sm font-medium rounded-xl focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all placeholder-slate-400">
+                       class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-100 text-slate-700 text-sm font-medium rounded-xl focus:bg-white focus:border-orange-600 focus:ring-4 focus:ring-orange-50/50 transition-all placeholder-slate-400">
                  </div>
 
                  <!-- delete -->
@@ -163,14 +163,15 @@ export class ApplicationsComponent implements OnInit {
   }
 
   updateStatus(app: Application) {
-    // We could add an updateApplication action to the store
-    // For now, let's just dispatch the action if we had it, but for simplicity I'll skip it unless needed.
-    // Actually, let's just keep the direct service call for updates if we don't want to overcomplicate,
-    // but the user asked for "stocker" which implies the add part.
+    if (app.id) {
+      this.store.dispatch(updateApplication({ application: app }));
+    }
   }
 
   updateNotes(app: Application) {
-    // same here
+    if (app.id) {
+      this.store.dispatch(updateApplication({ application: app }));
+    }
   }
 
   deleteApp(id: number) {

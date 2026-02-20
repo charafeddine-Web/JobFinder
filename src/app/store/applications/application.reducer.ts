@@ -21,5 +21,9 @@ export const applicationReducer = createReducer(
     on(ApplicationActions.loadApplicationsFailure, (state, { error }) => ({ ...state, loading: false, error })),
 
     on(ApplicationActions.addApplicationSuccess, (state, { application }) => ({ ...state, applications: [...state.applications, application] })),
-    on(ApplicationActions.removeApplicationSuccess, (state, { applicationId }) => ({ ...state, applications: state.applications.filter(a => a.id !== applicationId) }))
+    on(ApplicationActions.removeApplicationSuccess, (state, { applicationId }) => ({ ...state, applications: state.applications.filter(a => a.id !== applicationId) })),
+    on(ApplicationActions.updateApplicationSuccess, (state, { application }) => ({
+        ...state,
+        applications: state.applications.map(a => a.id === application.id ? application : a)
+    }))
 );

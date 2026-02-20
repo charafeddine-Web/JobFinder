@@ -19,13 +19,12 @@ export class JobService {
      * Note: Arbeitnow doesn't support keyword search in API, so we fetch all jobs and filter client-side
      */
     searchJobs(criteria: JobSearchCriteria): Observable<Job[]> {
-        // Fetch jobs from API with a 6-second timeout for better UX
         return this.http.get<ArbeitnowResponse>(this.apiUrl).pipe(
-            timeout(6000), // Automaticaly fall back to mocks if API is too slow
+            timeout(6000),
             map((response: ArbeitnowResponse) => {
                 if (!response || !response.data) {
                     console.warn('Arbeitnow API returned empty or invalid data');
-                    return this.getMockJobs(); // Fallback to mocks even if response is valid but empty
+                    return this.getMockJobs();
                 }
 
                 const jobs = response.data.map((job: ArbeitnowJob) => this.mapArbeitnowJobToJob(job));
@@ -42,16 +41,21 @@ export class JobService {
     }
 
     private filterJobs(jobs: Job[], criteria: JobSearchCriteria): Job[] {
-        return jobs.filter(job => {
+        const filtered = jobs.filter(job => {
             const matchesQuery = !criteria.query ||
-                job.title.toLowerCase().includes(criteria.query.toLowerCase()) ||
-                job.description.toLowerCase().includes(criteria.query.toLowerCase()) ||
-                (job.tags && job.tags.some(tag => tag.toLowerCase().includes(criteria.query.toLowerCase())));
+                job.title.toLowerCase().includes(criteria.query.toLowerCase());
 
             const matchesLocation = !criteria.location ||
                 job.location.toLowerCase().includes(criteria.location.toLowerCase());
 
             return matchesQuery && matchesLocation;
+        });
+
+        // "Les résultats doivent être triés par date de publication (du plus récent au plus ancien)"
+        return filtered.sort((a, b) => {
+            const dateA = new Date(a.datePosted).getTime();
+            const dateB = new Date(b.datePosted).getTime();
+            return dateB - dateA;
         });
     }
 

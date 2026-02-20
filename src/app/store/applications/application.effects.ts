@@ -47,4 +47,12 @@ export class ApplicationEffects {
             catchError(error => of(ApplicationActions.removeApplicationFailure({ error })))
         ))
     ));
+
+    updateApplication$ = createEffect(() => this.actions$.pipe(
+        ofType(ApplicationActions.updateApplication),
+        mergeMap(action => this.applicationService.updateApplication(action.application).pipe(
+            map(application => ApplicationActions.updateApplicationSuccess({ application })),
+            catchError(error => of(ApplicationActions.updateApplicationFailure({ error })))
+        ))
+    ));
 }

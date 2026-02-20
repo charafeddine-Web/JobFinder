@@ -13,7 +13,7 @@ import { User } from '../../../core/models/user.model';
       <!-- Header Section -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg text-xs font-black uppercase tracking-wider">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-lg text-xs font-black uppercase tracking-wider">
             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -30,7 +30,7 @@ import { User } from '../../../core/models/user.model';
         <div class="lg:col-span-2 space-y-8">
           <div class="premium-card p-8 md:p-12 overflow-hidden relative">
             <!-- Decorative gradient line -->
-            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-500 via-blue-500 to-emerald-500"></div>
+            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600"></div>
             
             <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="space-y-10">
               <div class="space-y-8">
@@ -39,7 +39,7 @@ import { User } from '../../../core/models/user.model';
                     <label for="firstName" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">First name</label>
                     <div class="relative group">
                       <input type="text" formControlName="firstName" id="firstName" 
-                        class="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all font-bold">
+                        class="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-orange-600 focus:ring-4 focus:ring-orange-50/50 transition-all font-bold">
                     </div>
                   </div>
 
@@ -47,7 +47,7 @@ import { User } from '../../../core/models/user.model';
                     <label for="lastName" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Last name</label>
                     <div class="relative group">
                       <input type="text" formControlName="lastName" id="lastName" 
-                        class="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all font-bold">
+                        class="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-orange-600 focus:ring-4 focus:ring-orange-50/50 transition-all font-bold">
                     </div>
                   </div>
                 </div>
@@ -55,13 +55,13 @@ import { User } from '../../../core/models/user.model';
                 <div class="space-y-2">
                   <label for="email" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Email address</label>
                   <div class="relative group">
-                    <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-indigo-600 transition-colors">
+                    <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-orange-600 transition-colors">
                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                        </svg>
                     </div>
                     <input type="email" formControlName="email" id="email" 
-                      class="block w-full pl-14 pr-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50/50 transition-all font-bold">
+                      class="block w-full pl-14 pr-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-orange-600 focus:ring-4 focus:ring-orange-50/50 transition-all font-bold">
                   </div>
                 </div>
                 
@@ -71,13 +71,13 @@ import { User } from '../../../core/models/user.model';
                     <div class="space-y-2">
                       <label for="password" class="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Update Password <span class="text-slate-400 font-bold lowercase italic">(leave blank to keep current)</span></label>
                       <div class="relative group">
-                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-300 group-focus-within:text-violet-600 transition-colors">
+                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-300 group-focus-within:text-orange-600 transition-colors">
                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                            </svg>
                         </div>
                         <input type="password" formControlName="password" id="password" 
-                          class="block w-full pl-14 pr-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-violet-600 focus:ring-4 focus:ring-violet-50/50 transition-all font-bold"
+                          class="block w-full pl-14 pr-5 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-orange-600 focus:ring-4 focus:ring-orange-50/50 transition-all font-bold"
                           placeholder="••••••••••••">
                       </div>
                     </div>
@@ -96,7 +96,7 @@ import { User } from '../../../core/models/user.model';
 
               <div class="pt-4 flex flex-col sm:flex-row gap-4">
                 <button type="submit" [disabled]="profileForm.invalid || loading" 
-                  class="btn btn-primary px-12 py-4 h-14 min-w-[200px] shadow-2xl shadow-indigo-100 disabled:opacity-50">
+                  class="flex items-center justify-center h-14 px-12 bg-orange-600 text-white font-black rounded-2xl shadow-2xl shadow-orange-100 hover:bg-orange-700 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:active:scale-100 min-w-[200px]">
                   <span *ngIf="!loading">Save Changes</span>
                   <div *ngIf="loading" class="flex items-center gap-2">
                      <div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -112,11 +112,11 @@ import { User } from '../../../core/models/user.model';
         <div class="space-y-8">
            <!-- Membership Card -->
            <div class="premium-card p-10 relative overflow-hidden group">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700"></div>
               
               <div class="relative flex flex-col items-center text-center space-y-6">
                  <div class="relative">
-                    <div class="w-24 h-24 rounded-[32px] bg-gradient-to-br from-indigo-600 to-blue-600 text-white flex items-center justify-center font-black text-4xl shadow-2xl shadow-indigo-200 border-4 border-white">
+                    <div class="w-24 h-24 rounded-[32px] bg-gradient-to-br from-orange-600 to-amber-600 text-white flex items-center justify-center font-black text-4xl shadow-2xl shadow-orange-200 border-4 border-white">
                       {{ currentUser?.firstName?.substring(0, 1) }}
                     </div>
                     <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-emerald-500 border-4 border-white rounded-2xl flex items-center justify-center shadow-lg">
@@ -128,7 +128,7 @@ import { User } from '../../../core/models/user.model';
                  
                  <div class="space-y-1">
                     <h3 class="text-2xl font-black text-slate-900 leading-tight">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</h3>
-                    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-[10px] font-black uppercase tracking-widest">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-50 text-orange-700 rounded-full text-[10px] font-black uppercase tracking-widest">
                        Premium Professional
                     </div>
                  </div>

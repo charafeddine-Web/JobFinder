@@ -46,3 +46,18 @@ export const removeApplicationFailure = createAction(
     '[Applications API] Remove Application Failure',
     props<{ error: any }>()
 );
+
+export const updateApplication = createAction(
+    '[Tracking Page] Update Application',
+    props<{ application: Application }>()
+);
+
+export const updateApplicationSuccess = createAction(
+    '[Applications API] Update Application Success',
+    props<{ application: Application }>()
+);
+
+export const updateApplicationFailure = createAction(
+    '[Applications API] Update Application Failure',
+    props<{ error: any }>()
+);
