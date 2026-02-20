@@ -3,6 +3,8 @@ import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', loadComponent: () => import('./features/jobs/jobs-page.component').then(m => m.JobsPageComponent) },
+    { path: 'companies', loadComponent: () => import('./features/companies/companies.component').then(m => m.CompaniesComponent) },
+    { path: 'resources', loadComponent: () => import('./features/resources/resources.component').then(m => m.ResourcesComponent) },
     {
         path: 'auth',
         children: [
@@ -22,6 +24,7 @@ export const routes: Routes = [
             { path: 'applications', loadComponent: () => import('./features/dashboard/applications/applications.component').then(m => m.ApplicationsComponent) },
             { path: 'profile', loadComponent: () => import('./features/dashboard/profile/profile.component').then(m => m.ProfileComponent) }
         ]
-    }
+    },
+    { path: '**', redirectTo: '' }
 ];
 

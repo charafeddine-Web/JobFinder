@@ -6,6 +6,13 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)
 
+![alt text](image.png)
+![alt text](image-5.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+
 ## 📖 Description
 
 **JobFinder** est une plateforme moderne de recherche d'emploi développée en **Angular 17+ (Standalone Components)**. Conçue comme une **Single Page Application (SPA)**, elle offre une expérience utilisateur fluide et responsive pour les chercheurs d'emploi.

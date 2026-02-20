@@ -29,6 +29,22 @@
       "company": "Cell Labs",
       "location": "Berlin",
       "id": 2
+    },
+    {
+      "userId": 1,
+      "offerId": "fachinformatiker-systemintegration-it-administrator-glaubitz-266251",
+      "title": "Fachinformatiker Systemintegration / IT-Administrator (m/w/d)",
+      "company": "Kluge IT Lösungen GmbH",
+      "location": "Glaubitz",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
+      "title": "Software & Controls Engineer for Humanoid Robotics",
+      "company": "Cell Labs",
+      "location": "Berlin",
+      "id": 4
     }
   ],
   "applications": [

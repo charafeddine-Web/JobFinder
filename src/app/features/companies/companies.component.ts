@@ -1,0 +1,165 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
+@Component({
+    selector: 'app-companies',
+    standalone: true,
+    imports: [CommonModule, RouterLink],
+    template: `
+    <div class="min-h-screen relative overflow-hidden bg-slate-50">
+      <!-- Background Decorative Elements -->
+      <div class="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-orange-50/50 to-transparent -z-10"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float"></div>
+      
+      <!-- Hero Section -->
+      <section class="relative pt-20 pb-16 px-6">
+        <div class="max-w-7xl mx-auto text-center space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-100 animate-slide-up">
+            <span class="w-2 h-2 rounded-full bg-orange-500 shadow-lg shadow-orange-200"></span>
+            <span class="text-xs font-black uppercase tracking-widest text-slate-600">Market Leaders</span>
+          </div>
+          
+          <h1 class="text-5xl md:text-7xl font-black text-slate-900 leading-tight animate-slide-up" style="animation-delay: 0.1s">
+            Partner with the <br>
+            <span class="gradient-text">World's Best</span> Companies.
+          </h1>
+          
+          <p class="max-w-2xl mx-auto text-lg text-slate-500 font-medium leading-relaxed animate-slide-up" style="animation-delay: 0.2s">
+            We work with industry leaders and disruptive startups to bring you the best career opportunities in design, tech, and beyond.
+          </p>
+        </div>
+      </section>
+
+      <!-- Featured Companies Grid -->
+      <section class="max-w-7xl mx-auto px-6 pb-32">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let company of companies; let i = index" 
+               class="premium-card p-10 group hover:bg-white transition-all duration-500 border border-transparent hover:border-orange-100 animate-slide-up"
+               [style.animation-delay]="0.1 * (i + 3) + 's'">
+            
+            <div class="flex flex-col h-full gap-8">
+              <!-- Logo & Header -->
+              <div class="flex items-start justify-between">
+                <div class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-3xl font-black text-slate-900 group-hover:bg-orange-600 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm group-hover:shadow-orange-200">
+                  {{ company.name.substring(0, 1) }}
+                </div>
+                <div class="flex flex-col items-end">
+                  <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Open Roles</span>
+                  <span class="text-2xl font-black text-slate-900 group-hover:text-orange-600">{{ company.roles }}</span>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="space-y-3">
+                <h3 class="text-2xl font-black text-slate-900">{{ company.name }}</h3>
+                <p class="text-slate-500 font-medium line-clamp-2 leading-relaxed italic">
+                  "{{ company.description }}"
+                </p>
+              </div>
+
+              <!-- Metadata -->
+              <div class="flex flex-wrap gap-2">
+                <span *ngFor="let tag of company.tags" 
+                      class="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-wider rounded-lg group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
+                  {{ tag }}
+                </span>
+              </div>
+
+              <div class="pt-4 mt-auto border-t border-slate-50 flex items-center justify-between">
+                <div class="flex items-center gap-2 text-slate-400 font-bold text-sm">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
+                  {{ company.location }}
+                </div>
+                <a routerLink="/" [queryParams]="{ query: company.name }" 
+                   class="flex items-center gap-2 text-orange-600 font-black text-sm group/btn">
+                  View Jobs
+                  <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="max-w-7xl mx-auto px-6 pb-32">
+        <div class="premium-card bg-slate-900 p-12 md:p-20 text-center relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-96 h-96 bg-orange-600/20 rounded-full blur-[100px] -mr-48 -mt-48 group-hover:scale-125 transition-transform duration-1000"></div>
+          
+          <div class="relative z-10 space-y-8">
+            <h2 class="text-4xl md:text-5xl font-black text-white leading-tight">
+              Is your company <span class="text-orange-500">hiring?</span>
+            </h2>
+            <p class="max-w-xl mx-auto text-slate-400 font-medium text-lg">
+              Join thousands of industry-leading companies and start attracting top talent from our global community of design and tech professionals.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <button class="px-10 py-4 bg-orange-600 text-white font-black rounded-2xl shadow-2xl shadow-orange-900/40 hover:bg-orange-700 hover:scale-[1.02] active:scale-95 transition-all">
+                Post a Job
+              </button>
+              <button class="px-10 py-4 bg-white/10 text-white font-black rounded-2xl backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  `,
+    styles: [`
+    .gradient-text {
+      @apply bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent;
+    }
+  `]
+})
+export class CompaniesComponent {
+    companies = [
+        {
+            name: 'TechFlow Solutions',
+            roles: 12,
+            description: 'Building the next generation of cloud infrastructure with a focus on developer experience.',
+            location: 'Berlin, Germany',
+            tags: ['Cloud', 'SaaS', 'Infrastructure']
+        },
+        {
+            name: 'CreativePulse',
+            roles: 8,
+            description: 'A global design agency pushing the boundaries of interactive digital experiences.',
+            location: 'Paris, France',
+            tags: ['Design', 'Creative', 'Agency']
+        },
+        {
+            name: 'CloudScale AI',
+            roles: 25,
+            description: 'Revolutionizing data analysis through innovative machine learning and AI technologies.',
+            location: 'Remote / Global',
+            tags: ['AI', 'ML', 'Data']
+        },
+        {
+            name: 'BrightBlue Software',
+            roles: 15,
+            description: 'Developing sustainable fintech solutions that empower the next generation of investors.',
+            location: 'London, UK',
+            tags: ['Fintech', 'Sustainability', 'Scale']
+        },
+        {
+            name: 'Nova Dynamics',
+            roles: 9,
+            description: 'Where hardware meets software. Building robotics and automation for smart cities.',
+            location: 'Stockholm, Sweden',
+            tags: ['Robotics', 'Hardware', 'SmartCity']
+        },
+        {
+            name: 'ElasticMind',
+            roles: 20,
+            description: 'Empowering teams with flexible collaboration tools designed for the future of work.',
+            location: 'New York, USA',
+            tags: ['Productivity', 'FutureOfWork', 'Startup']
+        }
+    ];
+}
