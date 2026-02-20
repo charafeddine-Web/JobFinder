@@ -1,59 +1,116 @@
-# JobFinder
+# 🚀 JobFinder - Application de Recherche d'Emploi
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
+![Angular](https://img.shields.io/badge/Angular-17%2B-dd0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![NgRx](https://img.shields.io/badge/NgRx-State%20Management-purple.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)
 
-## Development server
+## 📖 Description
 
-To start a local development server, run:
+**JobFinder** est une plateforme moderne de recherche d'emploi développée en **Angular 17+ (Standalone Components)**. Conçue comme une **Single Page Application (SPA)**, elle offre une expérience utilisateur fluide et responsive pour les chercheurs d'emploi.
 
-```bash
-ng serve
+L'application permet aux utilisateurs de parcourir des offres agrégées depuis des APIs publiques, de gérer leurs favoris, de suivre l'état de leurs candidatures et de personnaliser leur profil professionnel.
+
+Le backend est simulé à l'aide de **JSON Server**, permettant une persistance des données (utilisateurs, favoris, candidatures) et une authentification fonctionnelle côté frontend.
+
+---
+
+## ✨ Fonctionnalités Principales
+
+### 🔍 Recherche Avancée
+- **Recherche par Mots-clés** : Filtrage strict sur les titres de poste.
+- **Filtrage Géographique** : Recherche par ville ou pays.
+- **Tri Intelligent** : Résultats triés par date de publication (du plus récent au plus ancien).
+- **Pagination** : Navigation fluide avec 10 résultats par page.
+
+### 👤 Espace Utilisateur
+- **Authentification** : Inscription et connexion sécurisées (Email/Mot de passe).
+- **Profil** : Gestion des informations personnelles (Nom, Prénom, Email).
+- **Suppression de Compte** : Option "Danger Zone" pour supprimer définitivement le compte et les données associées.
+
+### ❤️ Gestion des Favoris (NgRx)
+- Sauvegarde des offres intéressantes.
+- Visualisation centralisée des favoris.
+- Indicateurs visuels pour les offres déjà sauvegardées.
+- **State Management** : Gestion optimisée avec NgRx Store & Effects.
+
+### 📊 Suivi des Candidatures (NgRx)
+- Ajout d'offres au tableau de bord de suivi.
+- **Gestion de Statut** : Mises à jour en temps réel (En attente, Accepté, Refusé).
+- **Notes Personnelles** : Ajout de notes pour chaque candidature (ex: "Entretien prévu le 10/03").
+
+---
+
+## 🛠️ Architecture Technique
+
+Le projet suit une architecture modulaire et scalable basée sur les meilleures pratiques Angular :
+
+```
+src/app/
+├── core/               # Services singleton, Guards, Interceptors, Modèles
+│   ├── auth/           # Service d'authentification et Guard
+│   ├── interceptors/   # Intercepteurs HTTP
+│   ├── models/         # Interfaces TypeScript (User, Job, Application...)
+│   └── services/       # Services métier (JobService, FavoriteService...)
+├── features/           # Modules fonctionnels (Components)
+│   ├── auth/           # Login, Register
+│   ├── dashboard/      # Espace utilisateur (Favorites, Applications, Profile)
+│   └── jobs/           # Recherche et liste des offres
+├── store/              # Gestion d'état NgRx
+│   ├── applications/   # Actions, Reducers, Effects, Selectors pour Candidatures
+│   └── favorites/      # Actions, Reducers, Effects, Selectors pour Favoris
+└── shared/             # Composants et pipes réutilisables (si applicable)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Installation et Démarrage
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Prérequis : Node.js (v18+) et npm.
 
-```bash
-ng generate component component-name
-```
+1. **Cloner le projet**
+   ```bash
+   git clone https://github.com/votre-username/JobFinder.git
+   cd JobFinder
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **Installer les dépendances**
+   ```bash
+   npm install
+   ```
 
-```bash
-ng generate --help
-```
+3. **Lancer le Serveur de Données (JSON Server)**
+   Ce serveur simule l'API backend sur le port 3000.
+   ```bash
+   npm run server
+   ```
 
-## Building
+4. **Lancer l'Application (Frontend)**
+   Ouvrez un nouveau terminal et lancez le serveur de développement Angular.
+   ```bash
+   npm start
+   ```
+   L'application sera accessible sur `http://localhost:4200`.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🧪 Scénarios de Test
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Pour valider les fonctionnalités lors de la soutenance :
 
-## Running unit tests
+1. **Recherche** : Tapez "Angular" dans la barre de recherche. Vérifiez que seuls les titres contenant "Angular" s'affichent.
+2. **Favoris** : Connectez-vous, ajoutez une offre aux favoris. Allez dans le Dashboard > Favoris pour vérifier sa présence.
+3. **Candidature** : Postulez à une offre. Allez dans Dashboard > Applications. Changez le statut à "Accepted" et ajoutez une note. Actualisez la page pour confirmer la persistance.
+4. **Profil** : Modifiez votre nom dans l'onglet Profil.
+5. **Pagination** : Vérifiez que la liste des offres affiche bien 10 éléments par page et que les boutons "Suivant/Précédent" fonctionnent.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 👨‍💻 Auteurs
 
-## Running end-to-end tests
+Projet réalisé dans le cadre de la soutenance croisée 2 (2025/2026).
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+*Made with ❤️ and Angular.*
