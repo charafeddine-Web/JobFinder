@@ -2,7 +2,7 @@
   "users": [
     {
       "firstName": "charaf",
-      "lastName": "charaf eddine",
+      "lastName": " eddine",
       "email": "charaf@gmail.com",
       "id": 1
     },
@@ -40,14 +40,6 @@
     },
     {
       "userId": 1,
-      "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
-      "title": "Software & Controls Engineer for Humanoid Robotics",
-      "company": "Cell Labs",
-      "location": "Berlin",
-      "id": 4
-    },
-    {
-      "userId": 1,
       "offerId": "junior-analytics-engineer-bi-data-modelling-berlin-224041",
       "title": "Junior Analytics Engineer (BI + Data Modelling) - Berlin - m/f/d",
       "company": "Ninox Software GmbH",
@@ -79,18 +71,6 @@
       "status": "pending",
       "dateAdded": "2026-02-15T14:04:07.101Z",
       "id": 2
-    },
-    {
-      "userId": 1,
-      "offerId": "freelance-personalized-internet-ads-assessor-german-speaker-in-germany-berlin-170637",
-      "apiSource": "arbeitnow",
-      "title": "Freelance: Personalized Internet Ads Assessor - German speaker in Germany",
-      "company": "TELUS Digital",
-      "location": "Berlin",
-      "url": "https://www.arbeitnow.com/jobs/companies/telus-digital/freelance-personalized-internet-ads-assessor-german-speaker-in-germany-berlin-170637",
-      "status": "pending",
-      "dateAdded": "2026-02-15T16:09:33.528Z",
-      "id": 3
     },
     {
       "userId": 2,
