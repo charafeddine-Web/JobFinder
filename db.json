@@ -45,6 +45,14 @@
       "company": "Cell Labs",
       "location": "Berlin",
       "id": 4
+    },
+    {
+      "userId": 1,
+      "offerId": "junior-analytics-engineer-bi-data-modelling-berlin-224041",
+      "title": "Junior Analytics Engineer (BI + Data Modelling) - Berlin - m/f/d",
+      "company": "Ninox Software GmbH",
+      "location": "Berlin",
+      "id": 5
     }
   ],
   "applications": [

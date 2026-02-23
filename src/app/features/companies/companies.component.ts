@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
       <!-- Background Decorative Elements -->
       <div class="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-orange-50/50 to-transparent -z-10"></div>
       <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float"></div>
-      
+
       <!-- Hero Section -->
       <section class="relative pt-20 pb-16 px-6">
         <div class="max-w-7xl mx-auto text-center space-y-6">
@@ -19,12 +19,12 @@ import { RouterLink } from '@angular/router';
             <span class="w-2 h-2 rounded-full bg-orange-500 shadow-lg shadow-orange-200"></span>
             <span class="text-xs font-black uppercase tracking-widest text-slate-600">Market Leaders</span>
           </div>
-          
+
           <h1 class="text-5xl md:text-7xl font-black text-slate-900 leading-tight animate-slide-up" style="animation-delay: 0.1s">
             Partner with the <br>
             <span class="gradient-text">World's Best</span> Companies.
           </h1>
-          
+
           <p class="max-w-2xl mx-auto text-lg text-slate-500 font-medium leading-relaxed animate-slide-up" style="animation-delay: 0.2s">
             We work with industry leaders and disruptive startups to bring you the best career opportunities in design, tech, and beyond.
           </p>
@@ -34,10 +34,10 @@ import { RouterLink } from '@angular/router';
       <!-- Featured Companies Grid -->
       <section class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div *ngFor="let company of companies; let i = index" 
+          <div *ngFor="let company of companies; let i = index"
                class="premium-card p-10 group hover:bg-white transition-all duration-500 border border-transparent hover:border-orange-100 animate-slide-up"
                [style.animation-delay]="0.1 * (i + 3) + 's'">
-            
+
             <div class="flex flex-col h-full gap-8">
               <!-- Logo & Header -->
               <div class="flex items-start justify-between">
@@ -60,7 +60,7 @@ import { RouterLink } from '@angular/router';
 
               <!-- Metadata -->
               <div class="flex flex-wrap gap-2">
-                <span *ngFor="let tag of company.tags" 
+                <span *ngFor="let tag of company.tags"
                       class="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-wider rounded-lg group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
                   {{ tag }}
                 </span>
@@ -73,7 +73,7 @@ import { RouterLink } from '@angular/router';
                   </svg>
                   {{ company.location }}
                 </div>
-                <a routerLink="/" [queryParams]="{ query: company.name }" 
+                <a routerLink="/" [queryParams]="{ query: company.name }"
                    class="flex items-center gap-2 text-orange-600 font-black text-sm group/btn">
                   View Jobs
                   <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,7 +90,7 @@ import { RouterLink } from '@angular/router';
       <section class="max-w-7xl mx-auto px-6 pb-32">
         <div class="premium-card bg-slate-900 p-12 md:p-20 text-center relative overflow-hidden group">
           <div class="absolute top-0 right-0 w-96 h-96 bg-orange-600/20 rounded-full blur-[100px] -mr-48 -mt-48 group-hover:scale-125 transition-transform duration-1000"></div>
-          
+
           <div class="relative z-10 space-y-8">
             <h2 class="text-4xl md:text-5xl font-black text-white leading-tight">
               Is your company <span class="text-orange-500">hiring?</span>
@@ -110,12 +110,7 @@ import { RouterLink } from '@angular/router';
         </div>
       </section>
     </div>
-  `,
-    styles: [`
-    .gradient-text {
-      @apply bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent;
-    }
-  `]
+  `
 })
 export class CompaniesComponent {
     companies = [
