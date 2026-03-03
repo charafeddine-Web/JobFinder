@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Favorite } from '../models/favorite.model';
 import { Job } from '../models/job.model';
 import { Observable} from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class FavoriteService {
-    private apiUrl = 'http://localhost:3000/favoritesOffers';
+    private apiUrl = `${environment.apiUrl}/favoritesOffers`;
 
     constructor(private http: HttpClient) { }
 
