@@ -4,12 +4,13 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:3000/users';
+    private apiUrl = environment.apiUrl;
     private currentUserSubject = new BehaviorSubject<User | null>(this.getUserFromStorage());
     public currentUser$ = this.currentUserSubject.asObservable();
 
