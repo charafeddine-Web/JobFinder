@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'https://jobfinder-api-production.up.railway.app',
     jobApiUrl: 'https://www.arbeitnow.com/api/job-board-api'
 };
