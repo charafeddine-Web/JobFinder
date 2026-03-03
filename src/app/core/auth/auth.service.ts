@@ -22,19 +22,19 @@ export class AuthService {
     }
 
     register(user: User): Observable<User> {
-        return this.http.get<User[]>(`${this.apiUrl}?email=${user.email}`).pipe(
+        return this.http.get<User[]>(`${this.apiUrl}/users?email=${user.email}`).pipe(
             switchMap(users => {
                 if (users.length > 0) {
                     return throwError(() => new Error('Email already exists'));
                 }
-                return this.http.post<User>(this.apiUrl, user);
+                return this.http.post<User>(`${this.apiUrl}/users`, user);
             }),
             tap(() => { })
         );
     }
 
     login(email: string, password: string): Observable<User> {
-        return this.http.get<User[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
+        return this.http.get<User[]>(`${this.apiUrl}/users?email=${email}&password=${password}`).pipe(
             map(users => {
                 if (users && users.length > 0) {
                     const user = users[0];
@@ -68,7 +68,7 @@ export class AuthService {
     }
 
     updateUser(user: User): Observable<User> {
-        return this.http.put<User>(`${this.apiUrl}/${user.id}`, user).pipe(
+        return this.http.put<User>(`${this.apiUrl}/users/${user.id}`, user).pipe(
             tap(updatedUser => {
                 const { password, ...userWithoutPassword } = updatedUser;
                 this.storeUser(userWithoutPassword);
@@ -77,7 +77,7 @@ export class AuthService {
     }
 
     deleteUser(id: number): Observable<any> {
-        return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+        return this.http.delete(`${this.apiUrl}/users/${id}`).pipe(
             tap(() => this.logout())
         );
     }
