@@ -17,3 +17,5 @@ export const selectApplicationsError = createSelector(
     selectApplicationState,
     (state: State) => state.error
 );
+
+

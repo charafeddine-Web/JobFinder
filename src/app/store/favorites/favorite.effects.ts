@@ -25,7 +25,6 @@ export class FavoriteEffects {
             catchError(error => of(FavoriteActions.addFavoriteFailure({ error })))
         ))
     ));
-
     removeFavorite$ = createEffect(() => this.actions$.pipe(
         ofType(FavoriteActions.removeFavorite),
         mergeMap(action => this.favoriteService.removeFavorite(action.favoriteId).pipe(

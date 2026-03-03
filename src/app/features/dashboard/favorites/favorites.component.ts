@@ -18,6 +18,8 @@ import { RouterLink } from '@angular/router';
 export class FavoritesComponent implements OnInit {
   favorites$: Observable<Favorite[]>;
   loading$: Observable<boolean>;
+  showDeleteModal = false;
+  deleteTargetId: number | null = null;
 
   constructor(
     private store: Store,
@@ -34,7 +36,20 @@ export class FavoritesComponent implements OnInit {
     }
   }
 
-  onRemove(id: number) {
-    this.store.dispatch(removeFavorite({ favoriteId: id }));
+  openDeleteModal(id: number) {
+    this.deleteTargetId = id;
+    this.showDeleteModal = true;
+  }
+
+  closeDeleteModal() {
+    this.showDeleteModal = false;
+    this.deleteTargetId = null;
+  }
+
+  confirmDelete() {
+    if (this.deleteTargetId != null) {
+      this.store.dispatch(removeFavorite({ favoriteId: this.deleteTargetId }));
+    }
+    this.closeDeleteModal();
   }
 }

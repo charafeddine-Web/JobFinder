@@ -11,17 +11,21 @@
       "lastName": "test ",
       "email": "test@gmail.com",
       "id": 2
+    },
+    {
+      "firstName": "dep m",
+      "lastName": "dep",
+      "email": "dep@gmail.com",
+      "id": 3
+    },
+    {
+      "firstName": "oussama Modify",
+      "lastName": "oussama test",
+      "email": "oussama@gmail.com",
+      "id": 4
     }
   ],
   "favoritesOffers": [
-    {
-      "userId": 1,
-      "offerId": "qa-tester-web-app-saas-proptech-dresden-120119",
-      "title": "QA TESTER (M/W/D) - WEB APP / SAAS / PROPTECH",
-      "company": "Enerithm Technology GmbH",
-      "location": "Dresden",
-      "id": 1
-    },
     {
       "userId": 2,
       "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
@@ -31,47 +35,71 @@
       "id": 2
     },
     {
-      "userId": 1,
-      "offerId": "fachinformatiker-systemintegration-it-administrator-glaubitz-266251",
-      "title": "Fachinformatiker Systemintegration / IT-Administrator (m/w/d)",
-      "company": "Kluge IT Lösungen GmbH",
-      "location": "Glaubitz",
-      "id": 3
+      "userId": 3,
+      "offerId": "alternative-zum-einzelhandel-in-hh-eimsbuttel-hamburg-175211",
+      "title": "Alternative zum Einzelhandel in HH-Eimsbüttel",
+      "company": "audibene GmbH",
+      "location": "Hamburg",
+      "id": 6
+    },
+    {
+      "userId": 3,
+      "offerId": "alternative-zum-einzelhandel-in-hh-eimsbuttel-hamburg-175211",
+      "title": "Alternative zum Einzelhandel in HH-Eimsbüttel",
+      "company": "audibene GmbH",
+      "location": "Hamburg",
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "offerId": "quereinstieg-horakustik-in-hh-eimsbuttel-hamburg-29346",
+      "title": "Quereinstieg Hörakustik in HH-Eimsbüttel",
+      "company": "audibene GmbH",
+      "location": "Hamburg",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "offerId": "seo-manager-seo-content-marketing-berlin-218447",
+      "title": "SEO Manager (w/m/d) - SEO & Content Marketing",
+      "company": "QUICK GREEN / Rapid Health GmbH",
+      "location": "Berlin",
+      "id": 9
     },
     {
       "userId": 1,
-      "offerId": "junior-analytics-engineer-bi-data-modelling-berlin-224041",
-      "title": "Junior Analytics Engineer (BI + Data Modelling) - Berlin - m/f/d",
-      "company": "Ninox Software GmbH",
+      "offerId": "werkstudent-produktmanagement-techagentur-berlin-468819",
+      "title": "Werkstudent Produktmanagement (w/m/d) - Techagentur",
+      "company": "VT Netzwelt GmbH",
       "location": "Berlin",
-      "id": 5
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "offerId": "technischer-projektkoordinator-brandschutz-hamburg-378524",
+      "title": "Technischer Projektkoordinator (m/w/d)  Brandschutz",
+      "company": "Franke + Pahl GmbH",
+      "location": "Hamburg",
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "offerId": "customer-support-engineer-medtech-nuremberg-343783",
+      "title": "Customer Support Engineer (m/w/d) MedTech",
+      "company": "Telepaxx Medical Data GmbH",
+      "location": "Nuremberg",
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "offerId": "founders-associate-internal-projects-strategy-berlin-59370",
+      "title": "Founder's Associate (m/w/d) - Internal Projects & Strategy",
+      "company": "VT Netzwelt GmbH",
+      "location": "Berlin",
+      "id": 13
     }
   ],
   "applications": [
-    {
-      "userId": 1,
-      "offerId": "social-media-manager-dach-raum-ansbach-152075",
-      "apiSource": "arbeitnow",
-      "title": "Social Media Manager - DACH Raum (m/w/d)",
-      "company": "TEVEO GmbH",
-      "location": "Ansbach",
-      "url": "https://www.arbeitnow.com/jobs/companies/teveo-gmbh/social-media-manager-dach-raum-ansbach-152075",
-      "status": "pending",
-      "dateAdded": "2026-02-15T14:03:43.249Z",
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "offerId": "qa-tester-web-app-saas-proptech-dresden-120119",
-      "apiSource": "arbeitnow",
-      "title": "QA TESTER (M/W/D) - WEB APP / SAAS / PROPTECH",
-      "company": "Enerithm Technology GmbH",
-      "location": "Dresden",
-      "url": "https://www.arbeitnow.com/jobs/companies/enerithm-technology-gmbh/qa-tester-web-app-saas-proptech-dresden-120119",
-      "status": "pending",
-      "dateAdded": "2026-02-15T14:04:07.101Z",
-      "id": 2
-    },
     {
       "userId": 2,
       "offerId": "software-controls-engineer-for-humanoid-robotics-berlin-391547",
@@ -95,6 +123,54 @@
       "status": "pending",
       "dateAdded": "2026-02-20T00:04:46.082Z",
       "id": 5
+    },
+    {
+      "userId": 3,
+      "offerId": "alternative-zum-einzelhandel-in-hh-eimsbuttel-hamburg-175211",
+      "apiSource": "arbeitnow",
+      "title": "Alternative zum Einzelhandel in HH-Eimsbüttel",
+      "company": "audibene GmbH",
+      "location": "Hamburg",
+      "url": "https://www.arbeitnow.com/jobs/companies/audibene-gmbh/alternative-zum-einzelhandel-in-hh-eimsbuttel-hamburg-175211",
+      "status": "pending",
+      "dateAdded": "2026-02-25T12:02:52.141Z",
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "offerId": "remote-technical-account-manager-dach-munich-287009",
+      "apiSource": "arbeitnow",
+      "title": "Technical Account Manager - DACH",
+      "company": "SolarEdge",
+      "location": "Munich",
+      "url": "https://www.arbeitnow.com/jobs/companies/solaredge/remote-technical-account-manager-dach-munich-287009",
+      "status": "pending",
+      "dateAdded": "2026-02-26T11:17:27.048Z",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "offerId": "remote-marketing-student-munich-343600",
+      "apiSource": "arbeitnow",
+      "title": "Marketing Student",
+      "company": "SolarEdge",
+      "location": "Munich",
+      "url": "https://www.arbeitnow.com/jobs/companies/solaredge/remote-marketing-student-munich-343600",
+      "status": "pending",
+      "dateAdded": "2026-02-26T11:17:42.803Z",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "offerId": "freelance-senior-drupal-developer-deutschsprachig-remote-berlin-263691",
+      "apiSource": "arbeitnow",
+      "title": "Freelance Senior Drupal Developer (m/w/d) - deutschsprachig remote",
+      "company": "B-works",
+      "location": "Berlin",
+      "url": "https://www.arbeitnow.com/jobs/companies/b-works/freelance-senior-drupal-developer-deutschsprachig-remote-berlin-263691",
+      "status": "accepted",
+      "dateAdded": "2026-03-03T14:41:31.823Z",
+      "id": 9
     }
   ]
 }

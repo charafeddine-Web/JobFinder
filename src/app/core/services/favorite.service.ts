@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Favorite } from '../models/favorite.model';
 import { Job } from '../models/job.model';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
+
 
 @Injectable({
     providedIn: 'root'

@@ -32,7 +32,7 @@ export class JobsPageComponent implements OnInit, OnDestroy {
   constructor(
     private jobService: JobService,
     private store: Store,
-    private authService: AuthService,
+    public authService: AuthService,
     private cdr: ChangeDetectorRef
   ) {
     this.favorites$ = this.store.select(selectAllFavorites);
