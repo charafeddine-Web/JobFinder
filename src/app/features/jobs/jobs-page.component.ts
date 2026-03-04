@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { JobSearchComponent } from './job-search/job-search.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { JobService } from '../../core/services/job.service';
@@ -33,7 +34,8 @@ export class JobsPageComponent implements OnInit, OnDestroy {
     private jobService: JobService,
     private store: Store,
     public authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {
     this.favorites$ = this.store.select(selectAllFavorites);
   }
@@ -110,8 +112,14 @@ export class JobsPageComponent implements OnInit, OnDestroy {
     this.store.dispatch(ApplicationActions.addApplication({ job, userId: user.id }));
   }
 
-  /** Scroll to top of page (used by "back to top" button) */
+  /** Scroll to top: window on public page, dashboard main container when authenticated on /dashboard/jobs */
   scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const isDashboard = this.router.url.startsWith('/dashboard');
+    const dashboardScroll = document.getElementById('dashboard-main-scroll');
+    if (isDashboard && dashboardScroll) {
+      dashboardScroll.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }

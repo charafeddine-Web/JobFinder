@@ -127,8 +127,8 @@
        </div>
     </header>
 
-    <!-- Main Content with smooth scroll -->
-    <main class="flex-1 overflow-y-auto p-6 lg:p-12">
+    <!-- Main Content with smooth scroll (scrollToTop targets this when on dashboard) -->
+    <main id="dashboard-main-scroll" class="flex-1 overflow-y-auto overflow-x-hidden p-6 lg:p-12">
        <div class="max-w-7xl mx-auto">
           <router-outlet></router-outlet>
        </div>
