@@ -1,1 +1,12 @@
 /* JobSearch component CSS (Tailwind-driven) */
+/* Same height for entire search bar; Poppins applied globally via styles.css */
+.job-search-form {
+  font-family: 'Poppins', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .job-search-form {
+    min-height: 5rem; /* Same as md:min-h-[5rem] - single bar height */
+  }
+}
+

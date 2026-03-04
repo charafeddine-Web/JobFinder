@@ -1,100 +1,149 @@
 <header *ngIf="!isDashboard"
-  class="sticky top-0 z-50 h-20 bg-white/95 backdrop-blur-xl border-b border-slate-200/60 shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-
-    <!-- Logo & Brand -->
-    <div class="flex items-center gap-12">
-      <a routerLink="/" class="flex items-center gap-3 group cursor-pointer">
-        <div
-          class="w-8 h-8 bg-gradient-to-br from-orange-600 to-amber-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-100 rotate-[-4deg] group-hover:rotate-0 transition-all duration-300">
-          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <span
-          class="text-2xl font-black text-slate-900 tracking-tight group-hover:text-orange-600 transition-colors duration-300">
-          Job<span class="text-orange-600">Finder</span>
-        </span>
+  class="sticky top-0 z-40 h-16 md:h-20 bg-white/95 backdrop-blur-xl border-b border-slate-200/60 shadow-sm safe-area-inset-top">
+  <div class="max-w-7xl mx-auto h-full flex items-center justify-between px-4 sm:px-6 gap-4">
+    <!-- Logo: always visible, links to home -->
+    <a routerLink="/" class="flex items-center gap-3 group cursor-pointer" aria-label="JobFinder - Accueil">
+      <!-- Logo -->
+      <div
+        class="w-10 h-10 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-100 rotate-[-4deg] group-hover:rotate-0 transition-all duration-300 flex-shrink-0">
+        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <span
+        class="text-2xl font-black text-slate-900 tracking-tight group-hover:text-orange-600 transition-colors duration-300">
+        Job<span class="text-orange-600">Finder</span>
+      </span>
+    </a>
+    <!-- Desktop nav + auth -->
+    <nav class="hidden md:flex items-center gap-1 flex-1 justify-center">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        class="nav-link relative px-4 py-2.5 text-sm font-bold text-slate-700 hover:text-orange-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
+        Explore Jobs
+        <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
       </a>
+      <a routerLink="/companies" routerLinkActive="active"
+        class="nav-link relative px-4 py-2.5 text-sm font-bold text-slate-700 hover:text-orange-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
+        Companies
+        <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
+      </a>
+      <a routerLink="/resources" routerLinkActive="active"
+        class="nav-link relative px-4 py-2.5 text-sm font-bold text-slate-700 hover:text-orange-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
+        Resources
+        <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
+      </a>
+    </nav>
 
-      <!-- Navigation Links -->
-      <nav class="hidden md:flex items-center gap-1">
-        <a routerLink="/" routerLinkActive="active"
-          class="relative px-4 py-2 text-sm font-bold text-slate-700 hover:text-orange-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
-          Explore Jobs
-          <!-- Animated Underline -->
-          <span
-            class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
-        </a>
-
-        <a routerLink="/companies" routerLinkActive="active"
-          class="relative px-4 py-2 text-sm font-bold text-slate-700 hover:text-orange-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
-          Companies
-          <span
-            class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
-        </a>
-
-        <a routerLink="/resources" routerLinkActive="active"
-          class="relative px-4 py-2 text-sm font-bold text-slate-700 hover:text-orange-600 rounded-lg hover:bg-slate-50/80 transition-all duration-200 group">
-          Resources
-          <span
-            class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-amber-600 group-hover:w-8 transition-all duration-300 rounded-full"></span>
-        </a>
-      </nav>
-    </div>
-
-    <!-- Auth Actions -->
-    <div class="flex items-center gap-3">
-      <!-- Not Authenticated State -->
+    <!-- Desktop auth -->
+    <div class="hidden md:flex items-center gap-2 shrink-0">
       <ng-container *ngIf="!authService.isAuthenticated()">
-        <!-- Login Button -->
         <a routerLink="/auth/login"
-          class="px-5 py-2.5 text-sm font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-200">
+          class="px-4 py-2.5 text-sm font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all duration-200 min-h-[44px] flex items-center">
           Log in
         </a>
-
-        <!-- Get Started Button (Primary CTA) -->
         <a routerLink="/auth/register"
-          class="group relative px-6 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 rounded-lg shadow-md shadow-orange-100/50 hover:shadow-lg hover:shadow-orange-200/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-          <span>Get Started</span>
-          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
+          class="btn-cta group relative px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 rounded-lg shadow-md shadow-orange-100/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center gap-2 min-h-[44px]">
+          Get Started
+          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
-
-          <!-- Shine Effect on Hover -->
-          <div
-            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg overflow-hidden">
-            <div
-              class="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 group-hover:left-full transition-all duration-700">
-            </div>
-          </div>
         </a>
       </ng-container>
-
-      <!-- Authenticated State -->
       <ng-container *ngIf="authService.isAuthenticated()">
-        <!-- Dashboard Button -->
         <a routerLink="/dashboard"
-          class="group relative px-6 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 rounded-lg shadow-md shadow-orange-100/50 hover:shadow-lg hover:shadow-orange-200/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-          <span>Dashboard</span>
-          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
+          class="btn-cta group relative px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 rounded-lg shadow-md shadow-orange-100/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center gap-2 min-h-[44px]">
+          Dashboard
+          <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
           </svg>
-
-          <!-- Shine Effect -->
-          <div
-            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg overflow-hidden">
-            <div
-              class="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 group-hover:left-full transition-all duration-700">
-            </div>
-          </div>
         </a>
       </ng-container>
     </div>
+
+    <!-- Mobile: hamburger (opens menu) -->
+    <button type="button" (click)="toggleMobileMenu()" [attr.aria-label]="mobileMenuOpen() ? 'Fermer le menu' : 'Ouvrir le menu'" [attr.aria-expanded]="mobileMenuOpen()"
+      class="md:hidden w-12 h-12 flex items-center justify-center rounded-xl text-slate-700 bg-slate-100/80 hover:bg-slate-200 active:bg-slate-300 transition-colors touch-manipulation flex-shrink-0 -mr-1">
+      <svg *ngIf="!mobileMenuOpen()" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg *ngIf="mobileMenuOpen()" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
   </div>
 </header>
 
-<router-outlet />
+<!-- Mobile menu: outside header so it appears above everything (fixes hidden menu on phone) -->
+@if (!isDashboard && mobileMenuOpen()) {
+  <!-- Backdrop: tap outside to close -->
+  <div (click)="closeMobileMenu()" role="button" tabindex="-1" aria-label="Fermer le menu"
+    class="mobile-menu-backdrop fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-[2px] animate-fade-in"></div>
+  <!-- Drawer: do not close when tapping inside -->
+  <aside (click)="$event.stopPropagation()"
+    class="mobile-menu-drawer fixed top-0 right-0 z-[101] w-[min(300px,88vw)] max-w-full h-full bg-white flex flex-col shadow-2xl animate-slide-in-right overflow-y-auto"
+    role="dialog" aria-modal="true" aria-label="Menu de navigation">
+    <!-- Header with logo + close -->
+    <div class="flex items-center justify-between gap-3 p-4 sm:p-5 border-b border-slate-200 shrink-0">
+      <a routerLink="/" (click)="closeMobileMenu()" class="flex items-center gap-2.5 min-w-0">
+        <div class="w-10 h-10 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-100 flex-shrink-0">
+          <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <span class="text-xl font-black text-slate-900 tracking-tight">Job<span class="text-orange-600">Finder</span></span>
+      </a>
+      <button type="button" (click)="closeMobileMenu()" aria-label="Fermer le menu"
+        class="w-11 h-11 flex items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 active:bg-slate-200 transition-colors touch-manipulation flex-shrink-0">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+    <!-- Nav links -->
+    <nav class="flex flex-col p-3 sm:p-4 gap-0.5 flex-1 min-h-0">
+      <a routerLink="/" routerLinkActive="mobile-nav-active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()"
+        class="mobile-nav-link flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 font-semibold active:bg-orange-100 min-h-[52px] touch-manipulation">
+        <span class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </span>
+        Explore Jobs
+      </a>
+      <a routerLink="/companies" routerLinkActive="mobile-nav-active" (click)="closeMobileMenu()"
+        class="mobile-nav-link flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 font-semibold active:bg-orange-100 min-h-[52px] touch-manipulation">
+        <span class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+        </span>
+        Companies
+      </a>
+      <a routerLink="/resources" routerLinkActive="mobile-nav-active" (click)="closeMobileMenu()"
+        class="mobile-nav-link flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 font-semibold active:bg-orange-100 min-h-[52px] touch-manipulation">
+        <span class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+        </span>
+        Resources
+      </a>
+    </nav>
+    <!-- Auth buttons -->
+    <div class="p-4 border-t border-slate-200 bg-slate-50/50 space-y-2 shrink-0 safe-area-inset">
+      <ng-container *ngIf="!authService.isAuthenticated()">
+        <a routerLink="/auth/login" (click)="closeMobileMenu()"
+          class="flex items-center justify-center w-full py-3.5 rounded-xl font-bold text-slate-700 bg-white border border-slate-200 shadow-sm min-h-[48px] touch-manipulation">
+          Log in
+        </a>
+        <a routerLink="/auth/register" (click)="closeMobileMenu()"
+          class="flex items-center justify-center w-full py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-orange-600 to-amber-600 shadow-md min-h-[48px] touch-manipulation">
+          Get Started
+        </a>
+      </ng-container>
+      <ng-container *ngIf="authService.isAuthenticated()">
+        <a routerLink="/dashboard" (click)="closeMobileMenu()"
+          class="flex items-center justify-center w-full py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-orange-600 to-amber-600 shadow-md min-h-[48px] touch-manipulation">
+          Dashboard
+        </a>
+      </ng-container>
+    </div>
+  </aside>
+}
+
+<main class="min-h-screen overflow-x-hidden">
+  <router-outlet />
+</main>

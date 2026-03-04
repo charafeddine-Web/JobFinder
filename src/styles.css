@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 :root {
     --primary: #f97316;
@@ -18,11 +19,16 @@
     --aurora-gradient: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #facc15 100%);
 }
 
+/* Apply Poppins on the entire app */
+html,
 body {
-    font-family: 'Outfit', sans-serif;
-    background-color: #fdfcfa;
-    color: var(--slate-900);
-    overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #fdfcfa;
+  color: var(--slate-900);
+  overflow-x: hidden;
 }
 
 /* Background Gradients */
@@ -214,6 +220,32 @@ body {
     animation: fadeIn 0.6s ease-out forwards;
 }
 
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.25s ease-out forwards;
+}
+
+/* Safe area for notched devices (navbar, mobile menu) */
+.safe-area-inset-top {
+    padding-top: env(safe-area-inset-top, 0);
+}
+
+.safe-area-inset {
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
 @keyframes bounceHorizontal {
 
     0%,
@@ -352,4 +384,49 @@ body {
 .premium-nav-item:hover .nav-icon-bg {
     background: #fff7ed;
     color: #f97316;
+}
+
+/* Main layout: prevent horizontal overflow on small screens */
+main {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navbar: active link state */
+.nav-link.active {
+    color: #ea580c;
+    background-color: rgba(249, 115, 22, 0.08);
+}
+
+.nav-link.active span:last-child {
+    width: 2rem;
+}
+
+.mobile-nav-link.mobile-nav-active {
+    background-color: rgba(249, 115, 22, 0.12);
+    color: #ea580c;
+}
+
+/* Touch targets: minimum 44px for mobile */
+@media (max-width: 767px) {
+    .touch-manipulation {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Lock body scroll when mobile menu is open (phone UX) */
+body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* Mobile menu: ensure drawer is visible and above backdrop */
+.mobile-menu-backdrop {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu-drawer {
+    border-left: 1px solid rgba(226, 232, 240, 0.8);
 }
