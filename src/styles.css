@@ -3,27 +3,29 @@
 
 :root {
     --primary: #f97316;
-    /* Orange 500 */
     --primary-hover: #ea580c;
-    /* Orange 600 */
     --primary-glow: rgba(249, 115, 22, 0.15);
     --secondary: #fbbf24;
-    /* Amber 400 */
     --accent: #000000;
-    /* Pure Black */
     --slate-900: #0f172a;
     --slate-800: #1e293b;
     --slate-400: #94a3b8;
     --glass-bg: rgba(255, 255, 255, 0.8);
     --glass-border: rgba(255, 255, 255, 0.4);
     --aurora-gradient: linear-gradient(135deg, #f97316 0%, #fbbf24 50%, #facc15 100%);
+    /* Base font size for the whole application */
+    --font-size-base: 15px;
 }
 
-/* Apply Poppins on the entire app */
-html,
+/* Apply font size and Poppins on the entire app */
+html {
+  font-size: var(--font-size-base);
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  font-size: 14px !important;
+  font-size: 1rem;
 }
 
 body {

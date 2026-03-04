@@ -1,1 +1,6 @@
 /* Styles for JobsPageComponent (mostly Tailwind utilities) */
+
+/* Scroll to top: respect safe area on notched phones */
+.scroll-to-top {
+  bottom: calc(2rem + env(safe-area-inset-bottom, 0));
+}

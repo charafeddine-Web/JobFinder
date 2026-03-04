@@ -109,4 +109,9 @@ export class JobsPageComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(ApplicationActions.addApplication({ job, userId: user.id }));
   }
+
+  /** Scroll to top of page (used by "back to top" button) */
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
